@@ -42,7 +42,7 @@ const About = () => (
       </a>{' '}
       and use{' '}
       <a
-        href="https://twitter.com/pablostanley"
+        href="https://twitter.com/fangpenlin"
         className="underline text-blue-300"
       >
         Fang-Pen Lin's
