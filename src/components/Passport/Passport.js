@@ -71,7 +71,7 @@ const Passport = ({
           <dd className="font-mono">{eyr}</dd>
         </div>
         <div className="col-span-3">
-          <dt className="text-xs font-semibold text-blue-900">ID</dt>
+          <dt className="text-xs font-semibold text-blue-900">Passport ID</dt>
           <dd className="font-mono">{pid}</dd>
         </div>
         {cid && (

@@ -28,7 +28,6 @@ const Photo = ({ hcl, ecl, name }) => {
   );
 
   useEffect(() => {
-    console.log('Name Change', name);
     setTop(tops[Math.floor(Math.random() * tops.length)]);
     setEye(eyes[Math.floor(Math.random() * eyes.length)]);
     setSkin(skins[Math.floor(Math.random() * skins.length)]);

@@ -1,3 +1,4 @@
+import NumberEasing from 'react-number-easing';
 import Passport from 'components/Passport';
 import getName from 'data/names';
 import getCountry from 'data/countries';
@@ -73,6 +74,11 @@ const App = () => {
     return () => document.removeEventListener('keyup', handleKeypress);
   }, [handleKeypress, newPerson]);
 
+  const numberRenderer = useCallback(
+    (number) => number.toLocaleString(undefined, { maximumFractionDigits: 0 }),
+    [],
+  );
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-around py-4">
       <div className="flex justify-between max-w-xl w-full">
@@ -84,7 +90,15 @@ const App = () => {
         <p className="text-right">
           Earned:
           <br />
-          <span className="text-4xl">${score}</span>
+          <span className="text-4xl">
+            $
+            <NumberEasing
+              value={score}
+              ease="quadOut"
+              speed={1000}
+              customFunctionRender={numberRenderer}
+            />
+          </span>
         </p>
       </div>
       <Passport name={name} country={country} approved={approved} {...person} />
