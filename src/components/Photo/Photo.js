@@ -9,33 +9,24 @@ import {
   tops,
 } from 'data/photoParts';
 import { useEffect, useRef, useState } from 'react';
+import { getRandom } from 'utils/utils';
 
 const Photo = ({ hcl, ecl, name }) => {
   const avatarRef = useRef(null);
-  const [top, setTop] = useState(tops[Math.floor(Math.random() * tops.length)]);
-  const [eye, setEye] = useState(eyes[Math.floor(Math.random() * eyes.length)]);
-  const [skin, setSkin] = useState(
-    skins[Math.floor(Math.random() * skins.length)],
-  );
-  const [mouth, setMouth] = useState(
-    mouths[Math.floor(Math.random() * mouths.length)],
-  );
-  const [outfit, setOutfit] = useState(
-    clothes[Math.floor(Math.random() * clothes.length)],
-  );
-  const [clothesColour, setClothesColour] = useState(
-    clothesColours[Math.floor(Math.random() * clothesColours.length)],
-  );
+  const [top, setTop] = useState(getRandom(tops));
+  const [eye, setEye] = useState(getRandom(eyes));
+  const [skin, setSkin] = useState(getRandom(skins));
+  const [mouth, setMouth] = useState(getRandom(mouths));
+  const [outfit, setOutfit] = useState(getRandom(clothes));
+  const [clothesColour, setClothesColour] = useState(getRandom(clothesColours));
 
   useEffect(() => {
-    setTop(tops[Math.floor(Math.random() * tops.length)]);
-    setEye(eyes[Math.floor(Math.random() * eyes.length)]);
-    setSkin(skins[Math.floor(Math.random() * skins.length)]);
-    setMouth(mouths[Math.floor(Math.random() * mouths.length)]);
-    setOutfit(clothes[Math.floor(Math.random() * clothes.length)]);
-    setClothesColour(
-      clothesColours[Math.floor(Math.random() * clothesColours.length)],
-    );
+    setTop(getRandom(tops));
+    setEye(getRandom(eyes));
+    setSkin(getRandom(skins));
+    setMouth(getRandom(mouths));
+    setOutfit(getRandom(clothes));
+    setClothesColour(getRandom(clothesColours));
   }, [name]);
 
   useEffect(() => {

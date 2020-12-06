@@ -4,19 +4,18 @@ import getName from 'data/names';
 import getCountry from 'data/countries';
 import people from 'data/people';
 import { useCallback, useEffect, useState } from 'react';
+import { getRandom } from 'utils/utils';
 
-const App = () => {
+const Game = ({ score, setScore, gameOver }) => {
+  const [time, setTime] = useState(60);
   const [name, setName] = useState('');
   const [country, setCountry] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [person, setPerson] = useState(null);
   const [approved, setApproved] = useState(null);
-  const [score, setScore] = useState(0);
 
   const newPerson = useCallback(() => {
-    const { isValid: v, ...p } = people[
-      Math.floor(Math.random() * people.length)
-    ];
+    const { isValid: v, ...p } = getRandom(people);
     setApproved(null);
     setName(getName());
     setCountry(getCountry());
@@ -24,33 +23,47 @@ const App = () => {
     setIsValid(v);
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => setTime((t) => Math.max(0, t - 1)), 1000);
+  }, [time]);
+
+  useEffect(() => {
+    if (time === 0) {
+      gameOver();
+    }
+  }, [gameOver, time]);
+
   const correct = useCallback(() => {
     setScore((s) => s + 100);
-  }, []);
+  }, [setScore]);
 
   const incorrect = useCallback(() => {
     setScore((s) => Math.max(0, s - 500));
-  }, []);
+  }, [setScore]);
 
   const approve = useCallback(() => {
-    setApproved(true);
-    setTimeout(newPerson, 1000);
-    if (isValid) {
-      correct();
-    } else {
-      incorrect();
+    if (approved === null) {
+      setApproved(true);
+      setTimeout(newPerson, 1000);
+      if (isValid) {
+        correct();
+      } else {
+        incorrect();
+      }
     }
-  }, [correct, incorrect, isValid, newPerson]);
+  }, [approved, correct, incorrect, isValid, newPerson]);
 
   const deny = useCallback(() => {
-    setApproved(false);
-    setTimeout(newPerson, 1000);
-    if (isValid) {
-      incorrect();
-    } else {
-      correct();
+    if (approved === null) {
+      setApproved(false);
+      setTimeout(newPerson, 1000);
+      if (isValid) {
+        incorrect();
+      } else {
+        correct();
+      }
     }
-  }, [correct, incorrect, isValid, newPerson]);
+  }, [approved, correct, incorrect, isValid, newPerson]);
 
   const handleKeypress = useCallback(
     (event) => {
@@ -69,10 +82,13 @@ const App = () => {
   );
 
   useEffect(() => {
-    newPerson();
     document.addEventListener('keyup', handleKeypress);
     return () => document.removeEventListener('keyup', handleKeypress);
-  }, [handleKeypress, newPerson]);
+  }, [handleKeypress]);
+
+  useEffect(() => {
+    newPerson();
+  }, [newPerson]);
 
   const numberRenderer = useCallback(
     (number) => number.toLocaleString(undefined, { maximumFractionDigits: 0 }),
@@ -85,7 +101,7 @@ const App = () => {
         <p>
           Time:
           <br />
-          <span className="text-4xl">60</span>
+          <span className="text-4xl">{time}</span>
         </p>
         <p className="text-right">
           Earned:
@@ -120,4 +136,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Game;

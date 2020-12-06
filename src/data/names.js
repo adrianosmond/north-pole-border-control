@@ -1,3 +1,5 @@
+import { getRandom } from 'utils/utils';
+
 const firstNames = [
   'Another',
   'Aghast',
@@ -159,9 +161,4 @@ const lastNames = [
   'Zigzag',
 ];
 
-export default () => {
-  const firstName = firstNames[Math.floor(firstNames.length * Math.random())];
-  const lastName = lastNames[Math.floor(lastNames.length * Math.random())];
-
-  return `${firstName} ${lastName}`;
-};
+export default () => `${getRandom(firstNames)} ${getRandom(lastNames)}`;

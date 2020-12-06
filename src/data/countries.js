@@ -1,9 +1,11 @@
+import { getRandom } from 'utils/utils';
+
 const countries = [
-  'The Republic of Democratia',
+  'The Republic of Democratus',
   'The Kingdom of Sovreigna',
   'Despotopolis',
   'The Democratic Republic of Dictatoria',
-  "The People's Republic of Oppressia",
+  "The People's Republic of Oppressio",
 ];
 
-export default () => countries[Math.floor(Math.random() * countries.length)];
+export default () => getRandom(countries);
