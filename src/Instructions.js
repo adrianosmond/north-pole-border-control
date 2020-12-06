@@ -49,11 +49,11 @@ const Instructions = () => (
         </ul>
       </li>
       <li className="mt-2">
-        The hair color of the carrier - a # followed by exactly six characters
-        0-9 or A-F.
+        The hair colour of the carrier - a # followed by exactly six characters
+        0-9 or A-F (e.g. #CFD075).
       </li>
       <li className="mt-2">
-        The eye Color of the carrier - exactly one of: AMB, BLU, BRN, GRY, GRN,
+        The eye colour of the carrier - exactly one of: AMB, BLU, BRN, GRY, GRN,
         HZL, or OTH.
       </li>
       <li className="mt-2">
