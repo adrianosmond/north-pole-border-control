@@ -106,10 +106,11 @@ const Game = ({ score, setScore, gameOver }) => {
 
   return (
     <div
-      className={classNames([
-        'min-h-screen flex flex-col items-center justify-around p-4',
-        `switch-${switchDirection}`,
-      ])}
+      className={classNames({
+        'min-h-screen flex flex-col items-center justify-around p-4': true,
+        'switch-left': switchDirection === 'left',
+        'switch-right': switchDirection === 'right',
+      })}
     >
       <div className="flex justify-between max-w-xl w-full">
         <p>

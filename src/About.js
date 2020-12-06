@@ -60,7 +60,11 @@ const About = () => (
       >
         Passport Control Vectors by Vecteezy
       </a>
-      <a href="https://www.vecteezy.com/free-vector/passport-icon">
+      .{' '}
+      <a
+        href="https://www.vecteezy.com/free-vector/passport-icon"
+        className="underline text-blue-300"
+      >
         Passport Icon Vectors by Vecteezy
       </a>
     </p>

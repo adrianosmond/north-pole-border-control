@@ -1,5 +1,9 @@
 module.exports = {
-  purge: ['src/**/*.js', 'public/**/*.html'],
+  purge: {
+    preserveHtmlElements: false,
+    content: ['src/**/*.js', 'public/**/*.html'],
+    css: ['src/game.css'],
+  },
   theme: {
     extend: {},
   },
