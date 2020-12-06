@@ -1,0 +1,27 @@
+.passport-enter {
+  opacity: 0.01;
+  transform: translateY(calc(-1 * (50vh + 100%)));
+}
+
+.passport-enter.passport-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.passport-exit {
+  transform: rotate(0);
+  opacity: 1;
+  transform-origin: 50% 200vh;
+}
+
+.passport-exit.passport-exit-active {
+  transform: translateX(100%) rotate(10deg);
+  opacity: 0.01;
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+
+.switch-left .passport-exit.passport-exit-active {
+  transform: translateX(-100%) rotate(-10deg);
+}

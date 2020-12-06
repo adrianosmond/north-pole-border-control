@@ -1,10 +1,14 @@
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import NumberEasing from 'react-number-easing';
+import classNames from 'classnames';
 import Passport from 'components/Passport';
 import getName from 'data/names';
 import getCountry from 'data/countries';
 import people from 'data/people';
 import { useCallback, useEffect, useState } from 'react';
 import { getRandom } from 'utils/utils';
+
+import './game.css';
 
 const Game = ({ score, setScore, gameOver }) => {
   const [time, setTime] = useState(60);
@@ -13,12 +17,13 @@ const Game = ({ score, setScore, gameOver }) => {
   const [isValid, setIsValid] = useState(false);
   const [person, setPerson] = useState(null);
   const [approved, setApproved] = useState(null);
+  const [switchDirection, setSwitchDirection] = useState(null);
 
   const newPerson = useCallback(() => {
     const { isValid: v, ...p } = getRandom(people);
-    setApproved(null);
     setName(getName());
     setCountry(getCountry());
+    setApproved(null);
     setPerson(p);
     setIsValid(v);
   }, []);
@@ -42,28 +47,32 @@ const Game = ({ score, setScore, gameOver }) => {
   }, [setScore]);
 
   const approve = useCallback(() => {
-    if (approved === null) {
+    if (switchDirection === null) {
       setApproved(true);
-      setTimeout(newPerson, 1000);
+      setSwitchDirection('left');
+      setTimeout(() => setSwitchDirection(null), 1000);
+      setTimeout(() => newPerson(), 0);
       if (isValid) {
         correct();
       } else {
         incorrect();
       }
     }
-  }, [approved, correct, incorrect, isValid, newPerson]);
+  }, [correct, incorrect, isValid, newPerson, switchDirection]);
 
   const deny = useCallback(() => {
-    if (approved === null) {
+    if (switchDirection === null) {
       setApproved(false);
-      setTimeout(newPerson, 1000);
+      setSwitchDirection('right');
+      setTimeout(() => setSwitchDirection(null), 1000);
+      setTimeout(() => newPerson(), 0);
       if (isValid) {
         incorrect();
       } else {
         correct();
       }
     }
-  }, [approved, correct, incorrect, isValid, newPerson]);
+  }, [correct, incorrect, isValid, newPerson, switchDirection]);
 
   const handleKeypress = useCallback(
     (event) => {
@@ -96,7 +105,12 @@ const Game = ({ score, setScore, gameOver }) => {
   );
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-around py-4">
+    <div
+      className={classNames([
+        'min-h-screen flex flex-col items-center justify-around py-4',
+        `switch-${switchDirection}`,
+      ])}
+    >
       <div className="flex justify-between max-w-xl w-full">
         <p>
           Time:
@@ -117,7 +131,25 @@ const Game = ({ score, setScore, gameOver }) => {
           </span>
         </p>
       </div>
-      <Passport name={name} country={country} approved={approved} {...person} />
+      {person ? (
+        <SwitchTransition>
+          <CSSTransition key={name} timeout={500} classNames="passport">
+            <Passport
+              name={name}
+              country={country}
+              approved={approved}
+              {...person}
+            />
+          </CSSTransition>
+        </SwitchTransition>
+      ) : (
+        <Passport
+          name={name}
+          country={country}
+          approved={approved}
+          {...person}
+        />
+      )}
       <div className="flex justify-around max-w-xl w-full">
         <button
           onClick={approve}
