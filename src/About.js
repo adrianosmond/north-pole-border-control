@@ -60,6 +60,9 @@ const About = () => (
       >
         Passport Control Vectors by Vecteezy
       </a>
+      <a href="https://www.vecteezy.com/free-vector/passport-icon">
+        Passport Icon Vectors by Vecteezy
+      </a>
     </p>
   </div>
 );

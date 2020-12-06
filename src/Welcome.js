@@ -13,11 +13,11 @@ const Welcome = ({ startGame }) => {
         Start the game
       </button>
       <div className="mt-8 flex justify-around">
-        <Link to="/about" className="text-blue-300 underline">
-          About
-        </Link>
         <Link to="/instructions" className="text-blue-300 underline">
           How to play
+        </Link>
+        <Link to="/about" className="text-blue-300 underline">
+          About
         </Link>
       </div>
     </div>
