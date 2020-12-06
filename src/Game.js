@@ -107,7 +107,7 @@ const Game = ({ score, setScore, gameOver }) => {
   return (
     <div
       className={classNames([
-        'min-h-screen flex flex-col items-center justify-around py-4',
+        'min-h-screen flex flex-col items-center justify-around p-4',
         `switch-${switchDirection}`,
       ])}
     >
@@ -153,13 +153,13 @@ const Game = ({ score, setScore, gameOver }) => {
       <div className="flex justify-around max-w-xl w-full">
         <button
           onClick={approve}
-          className="text-6xl p-6 bg-green-500 rounded-full focus:outline-none focus:bg-green-400"
+          className="text-xl md:text-6xl p-2 px-4 md:p-6 bg-green-500 rounded-full focus:outline-none focus:bg-green-400"
         >
           👍
         </button>
         <button
           onClick={deny}
-          className="text-6xl p-6 bg-red-600 rounded-full focus:outline-none focus:bg-red-400"
+          className="text-xl md:text-6xl p-2 px-4 md:p-6 bg-red-600 rounded-full focus:outline-none focus:bg-red-400"
         >
           👎
         </button>

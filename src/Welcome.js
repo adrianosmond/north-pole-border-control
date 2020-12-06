@@ -3,7 +3,7 @@ import passport from './assets/passport.svg';
 
 const Welcome = ({ startGame }) => {
   return (
-    <div className="max-w-2xl mx-auto py-8 leading-relaxed text-center">
+    <div className="max-w-2xl mx-auto py-8 px-4 leading-relaxed text-center">
       <h1 className="text-4xl font-mono">North Pole: Border Control</h1>{' '}
       <img src={passport} alt="" className="mt-8" />
       <button

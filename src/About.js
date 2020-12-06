@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
 const About = () => (
-  <div className="max-w-2xl mx-auto py-8 leading-relaxed">
-    <div>
+  <div className="max-w-2xl mx-auto py-8 px-4 leading-relaxed">
+    <div className="mb-4">
       <Link to="/">&larr; Back</Link>
     </div>
     <h1 className="text-4xl text-center font-mono">About this game</h1>

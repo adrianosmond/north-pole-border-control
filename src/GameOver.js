@@ -1,7 +1,7 @@
 const GameOver = ({ score, startGame }) => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center py-12">
-      <h1 className="text-6xl font-mono">Game Over</h1>
+      <h1 className="text-6xl text-center font-mono">Game Over</h1>
       <p className="text-2xl mt-12 text-center">
         You earned
         <br />
